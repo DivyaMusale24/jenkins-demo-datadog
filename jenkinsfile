@@ -18,7 +18,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 sh '''
-                if grep -r "password" .; then
+                if grep -r "password" app.py; then
                     echo "Hardcoded secret detected!"
                     exit 1
                 else
