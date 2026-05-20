@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building application...'
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                sh '''
+                if grep -r "password" .; then
+                    echo "Hardcoded secret detected!"
+                    exit 1
+                else
+                    echo "No hardcoded secrets found."
+                fi
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+            }
+        }
+    }
+}
