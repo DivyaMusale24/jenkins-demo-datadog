@@ -1,2 +1,2 @@
-password = "admin123" 
+#password = "admin123" 
 print("Simple application running")
